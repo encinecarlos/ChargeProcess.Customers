@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ChargeProcess.Customers.Domain\ChargeProcess.Customers.Domain.csproj" />
+    <ProjectReference Include="..\ChargeProcess.Customers.Infrastructure\ChargeProcess.Customers.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

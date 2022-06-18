@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChargeProcess.Customers.Application\ChargeProcess.Customers.Application.csproj" />
+    <ProjectReference Include="..\ChargeProcess.Customers.Infrastructure\ChargeProcess.Customers.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
