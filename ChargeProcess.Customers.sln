@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargeProcess.Customers.Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargeProcess.Customers.IntegrationTest", "test\Integration\ChargeProcess.Customers.IntegrationTest\ChargeProcess.Customers.IntegrationTest.csproj", "{460A7BEF-8C8B-45B8-B0B5-4CC10A204A9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargeProcess.Customers.Application", "src\ChargeProcess.Customers.Application\ChargeProcess.Customers.Application.csproj", "{48DA1689-B6EF-405D-92AC-E123E70995E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{460A7BEF-8C8B-45B8-B0B5-4CC10A204A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{460A7BEF-8C8B-45B8-B0B5-4CC10A204A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{460A7BEF-8C8B-45B8-B0B5-4CC10A204A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48DA1689-B6EF-405D-92AC-E123E70995E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48DA1689-B6EF-405D-92AC-E123E70995E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48DA1689-B6EF-405D-92AC-E123E70995E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48DA1689-B6EF-405D-92AC-E123E70995E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{09788561-DAAA-43C8-9C1C-43A0FD7A2170} = {DC61FA10-2ECE-4BAA-A2F3-63292C2012BC}
 		{2C73A54B-3A2B-47D8-B524-BDFDCBED32D6} = {54EAE472-D04A-48C3-9496-08F5F1B8548F}
 		{460A7BEF-8C8B-45B8-B0B5-4CC10A204A9D} = {C59B1437-7076-45A3-A848-6B69357D6027}
+		{48DA1689-B6EF-405D-92AC-E123E70995E7} = {0E33B64E-EBB8-4141-8F69-160BE9A393EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C00FDC2F-FD8C-438F-AD04-BD9F8B5BF9D1}
