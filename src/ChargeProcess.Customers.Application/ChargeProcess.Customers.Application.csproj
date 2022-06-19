@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.SecretsManager.Caching" Version="1.0.4" />
+    <PackageReference Include="FluentValidation" Version="11.0.3" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChargeProcess.Customers.Domain\ChargeProcess.Customers.Domain.csproj" />
     <ProjectReference Include="..\ChargeProcess.Customers.Infrastructure\ChargeProcess.Customers.Infrastructure.csproj" />
   </ItemGroup>
