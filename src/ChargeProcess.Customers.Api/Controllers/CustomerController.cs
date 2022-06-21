@@ -6,7 +6,7 @@ using Serilog;
 
 namespace ChargeProcess.Customers.Api.Controllers
 {
-    [Route("/v{version:apiVersion}/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     [Consumes("application/json")]
     [Produces("application/json")]

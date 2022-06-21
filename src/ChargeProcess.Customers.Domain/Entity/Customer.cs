@@ -1,17 +1,17 @@
-﻿using Google.Cloud.Firestore;
+﻿using ChargeProcess.Customers.Domain.ValueObjects;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace ChargeProcess.Customers.Domain.Entity
 {
-    [FirestoreData]
-    public class Customer
+    public class Customer 
     {
-        [FirestoreProperty]
+        //[JsonPropertyName("id")]
+        public string Id { get; set; }
         public string? Name { get; set; }
 
-        [FirestoreProperty]
         public string? Province { get; set; }
 
-        [FirestoreProperty]
         public string? DocumentId { get; set; }
     }
 }

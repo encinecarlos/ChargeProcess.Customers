@@ -1,44 +1,37 @@
-﻿using ChargeProcess.Customers.Application.Extensions;
-using ChargeProcess.Customers.Domain.ValueObjects;
-using Google.Apis.Auth.OAuth2;
-using Google.Cloud.Firestore;
+﻿using ChargeProcess.Customers.Infrastructure.Repositories;
 using MediatR;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace ChargeProcess.Customers.Application.Commands.Customers
 {
-    internal class CustomerCommand : IRequestHandler<CustomerRequest, CustomerResponse>
+    public class CustomerCommand : IRequestHandler<CustomerRequest, CustomerResponse>
     {
-        //private IGetFirestoreCredentials Credentials { get; set; }
+        private ICustomerWriteRepository Repository { get; set; }
 
-        private IOptionsMonitor<KeySettings> Options { get; set; }
-
-        public CustomerCommand(IOptionsMonitor<KeySettings> options)
+        public CustomerCommand(ICustomerWriteRepository repository)
         {
-            Options = options;
+            Repository = repository;
         }
 
         public async Task<CustomerResponse> Handle(CustomerRequest request, CancellationToken cancellationToken)
         {
-            var credential = GoogleCredential.GetApplicationDefault();
-            var db = new FirestoreDbBuilder()
+            try
             {
-                Credential = credential,
-                ProjectId = "chargeprocess-353805"
-            }.Build();
-
-            CollectionReference collection = db.Collection("Customers");
-
-            await collection.AddAsync(request.Customer);
-
-            var secret = Options.CurrentValue;
-
-            return await Task.FromResult(new CustomerResponse() { MySecret = secret.Service});
+                request.Customer.Id = Guid.NewGuid().ToString();
+                await Repository.Save(request.Customer);
+                return await Task.FromResult(new CustomerResponse() 
+                { 
+                    Message = $"Saved Successful with Id {request.Customer.Id}", 
+                    StatusCode = StatusCodes.Status200OK 
+                });
+            } catch (Exception ex)
+            {
+                return await Task.FromResult(new CustomerResponse()
+                {
+                    Message = $"Unexpected error: {ex.Message}",
+                    StatusCode = StatusCodes.Status500InternalServerError
+                });
+            }
         }
     }
 }
