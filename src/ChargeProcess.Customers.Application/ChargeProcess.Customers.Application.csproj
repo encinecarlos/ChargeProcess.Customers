@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.0.3" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChargeProcess.Customers.Domain\ChargeProcess.Customers.Domain.csproj" />
     <ProjectReference Include="..\ChargeProcess.Customers.Infrastructure\ChargeProcess.Customers.Infrastructure.csproj" />
   </ItemGroup>
