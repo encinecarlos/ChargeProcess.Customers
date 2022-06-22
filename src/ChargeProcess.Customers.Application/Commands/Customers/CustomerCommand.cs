@@ -17,11 +17,13 @@ namespace ChargeProcess.Customers.Application.Commands.Customers
         {
             try
             {
-                request.Customer.Id = Guid.NewGuid().ToString();
-                await Repository.Save(request.Customer);
+                var customerAdapter = new CustomerAdapter().Adapt(request);
+                
+                await Repository.Save(customerAdapter);
+
                 return await Task.FromResult(new CustomerResponse() 
                 { 
-                    Message = $"Saved Successful with Id {request.Customer.Id}", 
+                    Message = $"Saved Successful with Id {customerAdapter.Id}", 
                     StatusCode = StatusCodes.Status200OK 
                 });
             } catch (Exception ex)

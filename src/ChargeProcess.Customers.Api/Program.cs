@@ -1,10 +1,18 @@
+using ChargeProcess.Customers.Application.Commands.Customers;
 using ChargeProcess.Customers.Crosscutting.DependencyInjection;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddFluentValidation(options =>
+    {
+        options.RegisterValidatorsFromAssemblyContaining<CustomerValidator>();
+        options.DisableDataAnnotationsValidation = true;
+    });
+
 builder.Services.AddMediator();
 //builder.Services.AddLogger(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
