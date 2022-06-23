@@ -1,6 +1,6 @@
 ﻿using ChargeProcess.Customers.Domain.Entity;
+using ChargeProcess.Customers.Domain.Repositories;
 using ChargeProcess.Customers.Infrastructure.Cosmos;
-using System.Text.Json;
 
 namespace ChargeProcess.Customers.Infrastructure.Repositories
 {

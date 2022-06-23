@@ -1,6 +1,6 @@
 ﻿using ChargeProcess.Customers.Domain.Entity;
 
-namespace ChargeProcess.Customers.Infrastructure.Repositories
+namespace ChargeProcess.Customers.Domain.Repositories
 {
     public interface ICustomerWriteRepository
     {

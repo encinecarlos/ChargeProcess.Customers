@@ -1,24 +1,29 @@
 using ChargeProcess.Customers.Application.Commands.Customers;
+using ChargeProcess.Customers.Application.Queries.GetCustomerBydocument;
 using ChargeProcess.Customers.Crosscutting.DependencyInjection;
+using FluentValidation;
 using FluentValidation.AspNetCore;
+using Serilog;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+LoggerServiceCollectionExtension.AddLogger(builder.Configuration);
 
-builder.Services.AddControllers()
-    .AddFluentValidation(options =>
-    {
-        options.RegisterValidatorsFromAssemblyContaining<CustomerValidator>();
-        options.DisableDataAnnotationsValidation = true;
-    });
+builder.Host.UseSerilog();
+
+builder.Services.AddControllers();
+
+builder.Services.AddScoped<IValidator<CustomerRequest>, CustomerValidator>();
+builder.Services.AddScoped<IValidator<GetCustomerByDocumentRequest>, GetCustomerByDocumentValidator>();
 
 builder.Services.AddMediator();
-//builder.Services.AddLogger(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCosmos(builder.Configuration);
 builder.Services.AddRepositories();
+builder.Services.AddServices();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
