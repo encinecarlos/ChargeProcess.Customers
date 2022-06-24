@@ -2,11 +2,11 @@
 
 namespace ChargeProcess.Customers.Application.Queries.GetCustomerBydocument
 {
-    public class GetCustomerByDocumentValidator : AbstractValidator<GetCustomerByDocumentRequest>
+    public class GetCustomerByDocumentValidator : AbstractValidator<string>
     {
         public GetCustomerByDocumentValidator()
         {
-            RuleFor(customer => customer.DocumentId)
+            RuleFor(customerId => customerId)
                 .IsValidCPF()
                 .WithMessage("The field must contain a valid document.")
                 .NotEmpty()

@@ -28,14 +28,17 @@ namespace ChargeProcess.Customers.Application.Commands.Customers
                 
                 if (customerExist != null)
                 {
-                    return await MessageService.ReturnError(new CustomerResponse(), "Document already exists", StatusCodes.Status500InternalServerError, cancellationToken);
+                    return await MessageService.ReturnError(new CustomerResponse(),
+                                                            "Document already exists",
+                                                            StatusCodes.Status500InternalServerError,
+                                                            cancellationToken);
                 }   
                 
                 await WiteRepository.Save(customerAdapter);
 
                 return await Task.FromResult(new CustomerResponse() 
                 { 
-                    Message = $"Saved Successful with Id {customerAdapter.Id}", 
+                    Message = $"Saved Successful with Id: {customerAdapter.Id}", 
                     StatusCode = StatusCodes.Status200OK 
                 });
             } catch (Exception ex)

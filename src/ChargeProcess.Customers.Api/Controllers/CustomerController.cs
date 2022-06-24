@@ -38,12 +38,12 @@ namespace ChargeProcess.Customers.Api.Controllers
         [ProducesResponseType(typeof(GetCustomerBydocumentResponse), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<GetCustomerBydocumentResponse>> GetCustomerbydocument([FromRoute] string documentId, CancellationToken cancellationToken)
         {
-            var erquest = new GetCustomerByDocumentRequest
+            var request = new GetCustomerByDocumentRequest
             {
                 DocumentId = documentId,
             };
 
-            var response = await Mediator.Send(erquest, cancellationToken);
+            var response = await Mediator.Send(request, cancellationToken);
 
             return response;
         }

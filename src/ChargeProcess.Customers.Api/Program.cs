@@ -13,9 +13,10 @@ LoggerServiceCollectionExtension.AddLogger(builder.Configuration);
 builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
+builder.Services.AddFluentValidation();
 
 builder.Services.AddScoped<IValidator<CustomerRequest>, CustomerValidator>();
-builder.Services.AddScoped<IValidator<GetCustomerByDocumentRequest>, GetCustomerByDocumentValidator>();
+builder.Services.AddScoped<IValidator<string>, GetCustomerByDocumentValidator>();
 
 builder.Services.AddMediator();
 builder.Services.AddEndpointsApiExplorer();
