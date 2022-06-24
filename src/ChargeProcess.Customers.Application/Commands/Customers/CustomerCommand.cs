@@ -1,6 +1,5 @@
 ﻿using ChargeProcess.Customers.Application.Services;
 using ChargeProcess.Customers.Domain.Repositories;
-using ChargeProcess.Customers.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
