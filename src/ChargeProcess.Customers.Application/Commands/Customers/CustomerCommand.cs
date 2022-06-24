@@ -1,4 +1,5 @@
-﻿using ChargeProcess.Customers.Infrastructure.Repositories;
+﻿using ChargeProcess.Customers.Application.Services;
+using ChargeProcess.Customers.Domain.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
@@ -6,11 +7,15 @@ namespace ChargeProcess.Customers.Application.Commands.Customers
 {
     public class CustomerCommand : IRequestHandler<CustomerRequest, CustomerResponse>
     {
-        private ICustomerWriteRepository Repository { get; set; }
+        private ICustomerWriteRepository WiteRepository { get; set; }
+        private ICustomerReadRepository ReadRepository { get; set; }
+        private IMessageService<CustomerResponse> MessageService { get; }
 
-        public CustomerCommand(ICustomerWriteRepository repository)
+        public CustomerCommand(ICustomerWriteRepository repository, ICustomerReadRepository readRepository, IMessageService<CustomerResponse> messageService)
         {
-            Repository = repository;
+            WiteRepository = repository;
+            ReadRepository = readRepository;
+            MessageService = messageService;
         }
 
         public async Task<CustomerResponse> Handle(CustomerRequest request, CancellationToken cancellationToken)
@@ -18,12 +23,21 @@ namespace ChargeProcess.Customers.Application.Commands.Customers
             try
             {
                 var customerAdapter = new CustomerAdapter().Adapt(request);
+                var customerExist = await ReadRepository.GetCustomerByDocument(request.DocumentId);
                 
-                await Repository.Save(customerAdapter);
+                if (customerExist != null)
+                {
+                    return await MessageService.ReturnError(new CustomerResponse(),
+                                                            "Document already exists",
+                                                            StatusCodes.Status500InternalServerError,
+                                                            cancellationToken);
+                }   
+                
+                await WiteRepository.Save(customerAdapter);
 
                 return await Task.FromResult(new CustomerResponse() 
                 { 
-                    Message = $"Saved Successful with Id {customerAdapter.Id}", 
+                    Message = $"Saved Successful with Id: {customerAdapter.Id}", 
                     StatusCode = StatusCodes.Status200OK 
                 });
             } catch (Exception ex)

@@ -1,8 +1,9 @@
-﻿namespace ChargeProcess.Customers.Application.Commands.Customers
+﻿using ChargeProcess.Customers.Domain.Common;
+
+namespace ChargeProcess.Customers.Application.Commands.Customers
 {
-    public class CustomerResponse
+    public class CustomerResponse : MessageBase
     {
-        public string Message { get; set; }
-        public int StatusCode { get; set; }
+        
     }
 }
