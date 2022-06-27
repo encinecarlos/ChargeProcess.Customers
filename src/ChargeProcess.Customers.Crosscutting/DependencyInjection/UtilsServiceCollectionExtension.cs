@@ -10,7 +10,7 @@ namespace ChargeProcess.Customers.Crosscutting.DependencyInjection
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IMessageService<CustomerResponse>, MessageService<CustomerResponse>>();
-            services.AddScoped<IMessageService<GetCustomerBydocumentResponse>, MessageService<GetCustomerBydocumentResponse>>();
+            services.AddScoped<IMessageService<GetCustomerByDocumentResponse>, MessageService<GetCustomerByDocumentResponse>>();
             
             return services;
         }

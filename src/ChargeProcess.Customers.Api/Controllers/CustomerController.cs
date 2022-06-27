@@ -33,10 +33,10 @@ namespace ChargeProcess.Customers.Api.Controllers
         }
 
         [HttpGet("{documentId}")]
-        [ProducesResponseType(typeof(GetCustomerBydocumentResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(GetCustomerBydocumentResponse), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(GetCustomerBydocumentResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<GetCustomerBydocumentResponse>> GetCustomerbydocument([FromRoute] string documentId, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(GetCustomerByDocumentResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetCustomerByDocumentResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(GetCustomerByDocumentResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<GetCustomerByDocumentResponse>> GetCustomerbydocument([FromRoute] string documentId, CancellationToken cancellationToken)
         {
             var request = new GetCustomerByDocumentRequest
             {

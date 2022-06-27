@@ -25,12 +25,13 @@ namespace ChargeProcess.Customers.Application.Commands.Customers
                 var customerAdapter = new CustomerAdapter().Adapt(request);
                 var customerExist = await ReadRepository.GetCustomerByDocument(request.DocumentId);
                 
-                if (customerExist != null)
+                if (customerExist.Id != null)
                 {
-                    return await MessageService.ReturnError(new CustomerResponse(),
-                                                            "Document already exists",
-                                                            StatusCodes.Status500InternalServerError,
-                                                            cancellationToken);
+                    return await Task.FromResult(new CustomerResponse
+                    {
+                        Message = "Csutomer already exists.",
+                        StatusCode = StatusCodes.Status500InternalServerError
+                    });
                 }   
                 
                 await WiteRepository.Save(customerAdapter);
