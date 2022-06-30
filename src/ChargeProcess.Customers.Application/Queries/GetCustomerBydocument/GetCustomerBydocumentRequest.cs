@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChargeProcess.Customers.Application.Queries.GetCustomerBydocument
 {
-    public class GetCustomerByDocumentRequest : IRequest<GetCustomerBydocumentResponse>
+    public class GetCustomerByDocumentRequest : IRequest<GetCustomerByDocumentResponse>
     {
         public string DocumentId { get; set; }
     }
